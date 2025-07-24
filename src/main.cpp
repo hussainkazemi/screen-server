@@ -63,18 +63,15 @@ void cleanScreen() {
 
 
 void playAnimation(position p ){
-
+    moveY(p.y);
+    moveX(p.x);
     for (int i=0; i<max_length; i++){
-        moveY(p.y);
-        moveX(p.x);
         drawSquer(i);
         usleep(animaion_speed_ns);
         cleanScreen();
     }
 
     for (int i=max_length; i>0; i--){
-        moveY(p.y);
-        moveX(p.x);
         drawSquer(i);
         usleep(animaion_speed_ns);
         cleanScreen();

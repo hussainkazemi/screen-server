@@ -1,0 +1,42 @@
+# Build artifacts
+*.o
+*.obj
+*.exe
+*.dll
+*.lib
+*.so
+*.a
+*.out
+build/
+bin/
+Debug/
+Release/
+
+# IDE specific files (e.g., Visual Studio)
+.vs/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.suo
+*.user
+*.VC.db
+ipch/
+
+# Temporary files
+*~
+*.bak
+*.tmp
+*.log
+*.swp
+*.swo
+
+# Dependency management (e.g., Conan)
+conanbuildinfo.cmake
+conaninfo.txt
+conanbuildinfo.props
+
+# Operating system specific files
+.DS_Store
+Thumbs.db
