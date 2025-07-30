@@ -2,7 +2,7 @@
 #include <stdlib.h>
 //todo import window.h for windows
 #include <unistd.h>
-
+#include <random>
 
 #define max_length 10
 #define animaion_speed_ns 75000
@@ -16,14 +16,11 @@ struct position
 };
 
 
-void drawSquer(int l);
+void drawSquareAt(int l, int x, int y);
 char getChar();
 void cleanScreen();
 void playAnimation(position p);
 position getNewPosition();
-void moveX(int x);
-void moveY(int y);
-
 
 int main() {
     int i = 0;
@@ -42,17 +39,24 @@ char getChar() {
 }
 
 //colorize 
-void drawSquer(int l) {
-    for (int i=0; i<l; i++){
-        for (int j=0; j<l; j++){
-            if (i==0 || i == l-1 || j==0 || j==l-1){
-                cout << getChar() << " "; 
-            }
-            else {
-                cout << "  ";
+void drawSquareAt(int l, int x, int y) {
+    for (int i = 0; i < y; ++i) {
+        std::cout << std::endl;
+    }
+
+    for (int i = 0; i < l; i++) {
+        for (int space = 0; space < x; ++space) {
+            std::cout << " ";
+        }
+
+        for (int j = 0; j < l; j++) {
+            if (i == 0 || i == l - 1 || j == 0 || j == l - 1) {
+                std::cout << getChar() << " ";
+            } else {
+                std::cout << "  ";
             }
         }
-        cout << endl;
+        std::cout << std::endl;
     }
 }
 
@@ -63,16 +67,14 @@ void cleanScreen() {
 
 
 void playAnimation(position p ){
-    moveY(p.y);
-    moveX(p.x);
     for (int i=0; i<max_length; i++){
-        drawSquer(i);
+        drawSquareAt(i, p.x, p.y);
         usleep(animaion_speed_ns);
         cleanScreen();
     }
 
     for (int i=max_length; i>0; i--){
-        drawSquer(i);
+        drawSquareAt(i, p.x, p.y);
         usleep(animaion_speed_ns);
         cleanScreen();
     }
@@ -81,19 +83,11 @@ void playAnimation(position p ){
 
 position getNewPosition() {
     position p;
-    p.x = 5;
-    p.y = 5;
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib_x(0, 150);
+    p.x = distrib_x(gen);
+    uniform_int_distribution<> distrib_y(0, 35);
+    p.y = distrib_y(gen);
     return p;
-}
-
-void moveX(int x) {
-    for(int i=0; i<x; i++){
-        cout <<" ";
-    }
-}
-
-void moveY(int y) {
-    for (int i=0; i<y; i++){
-        cout << "\n";
-    }
 }
