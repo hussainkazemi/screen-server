@@ -70,18 +70,17 @@ void cleanScreen() {
 }
 
 void playAnimation(position p ){
-    for (int i=max_length; i>2; i-=2){
-        drawSquareAt(i, p.x, p.y);
-        usleep(animaion_speed_ns);
-        cleanScreen();
-    }
-
     for (int i=2; i<10; i+=2){
         drawSquareAt(i, p.x, p.y);
         usleep(animaion_speed_ns);
         cleanScreen();
     }
 
+    for (int i=max_length; i>=2; i-=2){
+        drawSquareAt(i, p.x, p.y);
+        usleep(animaion_speed_ns);
+        cleanScreen();
+    }
 }
 
 position getNewPosition() {
