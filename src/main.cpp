@@ -3,9 +3,10 @@
 //todo import window.h for windows
 #include <unistd.h>
 #include <random>
+#include "square.h"
 
 #define max_length 10
-#define animaion_speed_ns 75000
+#define animaion_speed_ns 100000
 
 using namespace std;
 
@@ -40,24 +41,28 @@ char getChar() {
 
 //colorize 
 void drawSquareAt(int l, int x, int y) {
-    for (int i = 0; i < y; ++i) {
-        std::cout << std::endl;
-    }
-
-    for (int i = 0; i < l; i++) {
-        for (int space = 0; space < x; ++space) {
-            std::cout << " ";
-        }
-
-        for (int j = 0; j < l; j++) {
-            if (i == 0 || i == l - 1 || j == 0 || j == l - 1) {
-                std::cout << getChar() << " ";
-            } else {
-                std::cout << "  ";
-            }
-        }
-        std::cout << std::endl;
-    }
+   switch (l)
+   {
+   case 10:
+    PrintSquare10();
+    break;
+    case 8:
+    PrintSquare8();
+    break;
+    case 6:
+    PrintSquare6();
+    break;
+    case 4:
+    PrintSquare4();
+    break;
+    case 2:
+    PrintSquare2();
+    break;
+   
+   default:
+    cout<<"An error occured";
+    break;
+   }
 }
 
 void cleanScreen() {
@@ -67,13 +72,13 @@ void cleanScreen() {
 
 
 void playAnimation(position p ){
-    for (int i=0; i<max_length; i++){
+    for (int i=max_length; i>2; i-=2){
         drawSquareAt(i, p.x, p.y);
         usleep(animaion_speed_ns);
         cleanScreen();
     }
 
-    for (int i=max_length; i>0; i--){
+    for (int i=2; i<10; i+=2){
         drawSquareAt(i, p.x, p.y);
         usleep(animaion_speed_ns);
         cleanScreen();
