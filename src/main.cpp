@@ -44,19 +44,19 @@ void drawSquareAt(int l, int x, int y) {
    switch (l)
    {
    case 10:
-    PrintSquare10();
+    PrintSquare10(x,y);
     break;
     case 8:
-    PrintSquare8();
+    PrintSquare8(x,y);
     break;
     case 6:
-    PrintSquare6();
+    PrintSquare6(x,y);
     break;
     case 4:
-    PrintSquare4();
+    PrintSquare4(x,y);
     break;
     case 2:
-    PrintSquare2();
+    PrintSquare2(x,y);
     break;
    
    default:
@@ -68,8 +68,6 @@ void drawSquareAt(int l, int x, int y) {
 void cleanScreen() {
     system("clear");
 }
-
-
 
 void playAnimation(position p ){
     for (int i=max_length; i>2; i-=2){
